@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="threadpool"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\tests\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/remix/文档/GitHub/muse-threads/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pool">
+				<Option output="/home/remix/文档/GitHub/muse-threads/build/pool" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/remix/文档/GitHub/muse-threads/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/include"/>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/dependency/concurrent_queue"/>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/dependency/catch2"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 pool"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pool/fast">
+				<Option output="/home/remix/文档/GitHub/muse-threads/build/pool" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/remix/文档/GitHub/muse-threads/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/include"/>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/dependency/concurrent_queue"/>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/dependency/catch2"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 pool/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="/home/remix/文档/GitHub/muse-threads/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/remix/文档/GitHub/muse-threads/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/remix/文档/GitHub/muse-threads/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="poolUnit">
+				<Option output="/home/remix/文档/GitHub/muse-threads/build/tests/poolUnit" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/remix/文档/GitHub/muse-threads/build/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/include"/>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/dependency/concurrent_queue"/>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/dependency/catch2"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/tests/Makefile&quot;  VERBOSE=1 poolUnit"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="poolUnit/fast">
+				<Option output="/home/remix/文档/GitHub/muse-threads/build/tests/poolUnit" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/remix/文档/GitHub/muse-threads/build/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/include"/>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/dependency/concurrent_queue"/>
+					<Add directory="/home/remix/文档/GitHub/muse-threads/dependency/catch2"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/tests/Makefile&quot;  VERBOSE=1 poolUnit/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/remix/文档/GitHub/muse-threads/build/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/remix/文档/GitHub/muse-threads/main.cpp">
+			<Option target="pool"/>
+		</Unit>
+		<Unit filename="/home/remix/文档/GitHub/muse-threads/tests/poolTest.cpp">
+			<Option target="poolUnit"/>
+		</Unit>
+		<Unit filename="/home/remix/文档/GitHub/muse-threads/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/remix/文档/GitHub/muse-threads/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
