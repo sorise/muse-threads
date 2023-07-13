@@ -8,14 +8,18 @@
 
 **特点**:
 * 支持批量任务提交
-* 使用简单、跨平台、全部基于 C++ 标准。
+* 实现简单、跨平台、全部基于 C++ 标准。
 * 支持无锁队列 - `在CPU几乎满负荷的情况下推荐使用！`
 * 支持配置
+    
+
 
 #### 单个任务提交：
 ```cpp
 #include "thread_pool/pool.hpp"
 #include "thread_pool/executor_token.hpp"
+
+using namespace muse::pool;
 
 int main() {
     //创建一个线程池
@@ -63,6 +67,8 @@ int main() {
 ```cpp
 #include "thread_pool/pool.hpp"
 #include "thread_pool/executor_token.hpp"
+
+using namespace muse::pool;
 
 int main() {
     //创建一个线程池
