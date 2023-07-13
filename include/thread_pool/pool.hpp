@@ -65,8 +65,10 @@ namespace muse::pool{
                 if (!executorPtr->finishState){
                     //执行任务，防止异常导致 线程池崩溃！
                     try {
+                        printf("run one \n");
                         //正常执行完成状态
                         executorPtr->task();
+                        printf("run one end\n");
                     }catch(...){
                         //如果执行失败
                         executorPtr->haveException = true;
@@ -126,7 +128,6 @@ namespace muse::pool{
                     workers[i]->workman = wr;
                 }
             }catch(const std::bad_alloc & ex){
-                //内存不足以分配
                 return false;
             }catch(const std::exception & ex){
                 //其他异常
@@ -301,7 +302,9 @@ namespace muse::pool{
                 for (; i < results.size(); ++i) {
                     results[i].reason = RefuseReason::TaskQueueFulled;
                 }
+                condition.notify_all();
             }
+            printf("commit v finish \n");
             return results;
         }
 
@@ -329,6 +332,7 @@ namespace muse::pool{
                 for (; i < results.size(); ++i) {
                     results[i].reason = RefuseReason::TaskQueueFulled;
                 }
+                condition.notify_all();
             }
             return results;
         }
@@ -426,6 +430,7 @@ namespace muse::pool{
         }
 
         ~ThreadPool(){
+            printf("go to die \n");
             if (!isStart){
                 //就没有启动过线程池
             }else{

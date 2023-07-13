@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
-project(threadpool
+project(muse-threads
         VERSION         0.0.1
         DESCRIPTION     "A Simple RPC Application Framework Based on Connection UDP"
         HOMEPAGE_URL    "https://github.com/muse"

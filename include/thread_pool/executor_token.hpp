@@ -105,6 +105,58 @@ namespace muse::pool{
         return tokenPtr;
     }
 
+    template<typename R>
+    static R get_result_executor(const std::shared_ptr<Executor>& token){
+        if (token != nullptr){
+            auto result = reinterpret_cast<ExecutorToken<R>*>(token.get());
+            return result->get();
+        }else{
+            throw std::runtime_error("The parameter passed in is nullptr");
+        }
+    }
+
+    template<>
+    void get_result_executor(const std::shared_ptr<Executor>& token){
+        if (token != nullptr){
+            auto result = reinterpret_cast<ExecutorToken<void>*>(token.get());
+            return result->get();
+        }else{
+            throw std::runtime_error("The parameter passed in is nullptr");
+        }
+    }
+
+
+    template<typename R>
+    static bool is_discard_executor(const std::shared_ptr<Executor>& token){
+        if (token != nullptr){
+            auto result = reinterpret_cast<ExecutorToken<R>*>(token.get());
+            return result->isDiscard();
+        }else{
+            throw std::runtime_error("The parameter passed in is nullptr");
+        }
+    }
+
+    template<typename R>
+    static bool is_finish_executor(const std::shared_ptr<Executor>& token){
+        if (token != nullptr){
+            auto result = reinterpret_cast<ExecutorToken<R>*>(token.get());
+            return result->isFinish();
+        }else{
+            throw std::runtime_error("The parameter passed in is nullptr");
+        }
+    }
+
+
+    template<typename R>
+    static bool is_error_executor(const std::shared_ptr<Executor>& token){
+        if (token != nullptr){
+            auto result = reinterpret_cast<ExecutorToken<R>*>(token.get());
+            return result->isError();
+        }else{
+            throw std::runtime_error("The parameter passed in is nullptr");
+        }
+    }
+
 }
 
 
