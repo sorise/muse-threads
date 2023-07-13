@@ -1,8 +1,0 @@
-/home/remix/文档/GitHub/muse-threads/build/CMakeFiles/pool.dir
-/home/remix/文档/GitHub/muse-threads/build/CMakeFiles/test.dir
-/home/remix/文档/GitHub/muse-threads/build/CMakeFiles/edit_cache.dir
-/home/remix/文档/GitHub/muse-threads/build/CMakeFiles/rebuild_cache.dir
-/home/remix/文档/GitHub/muse-threads/build/tests/CMakeFiles/poolUnit.dir
-/home/remix/文档/GitHub/muse-threads/build/tests/CMakeFiles/test.dir
-/home/remix/文档/GitHub/muse-threads/build/tests/CMakeFiles/edit_cache.dir
-/home/remix/文档/GitHub/muse-threads/build/tests/CMakeFiles/rebuild_cache.dir

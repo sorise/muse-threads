@@ -1,1 +1,0 @@
-/bin/g++ -g CMakeFiles/poolUnit.dir/poolTest.cpp.o -o poolUnit 
