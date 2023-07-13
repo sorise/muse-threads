@@ -56,11 +56,11 @@ int main() {
 ```
 
 #### 批量任务提交：
-批量任务的结果或许需要使用一些静态辅助方法(R 为返回值类型，需要编译器指定)！
+批量任务的结果或许需要使用一些静态辅助方法(R 为返回值类型，需要指定)！
 
 * is_error_executor\<R\> ：判断结果是否有异常，返回 bool，会阻塞等待方法执行完毕。
-* is_finish_executor\<R\> ： 非阻塞方法，判断线程池是否已经执行完毕。
-* is_discard_executor\<R\> : 非阻塞方法，判断任务是否已经被线程池丢弃。
+* is_finish_executor\<R\> ： 非阻塞方法，判断线程池是否已经执行完毕，返回 bool。
+* is_discard_executor\<R\> : 非阻塞方法，判断任务是否已经被线程池丢弃，返回 bool。
 * get_result_executor\<R\> ： 获取返回值,阻塞方法。
 
 
