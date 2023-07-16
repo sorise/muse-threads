@@ -14,7 +14,7 @@ namespace muse::pool{
         };
 
         ExecutorToken(const ExecutorToken& other) = delete;
-
+        virtual ~ExecutorToken() = default;
         ExecutorToken(ExecutorToken&& other) noexcept
         :Executor(std::move(other)), resultFuture(std::move(other.resultFuture)){};
 
@@ -41,6 +41,9 @@ namespace muse::pool{
             isError();
             return value;
         }
+
+
+
     private:
         std::future<R> resultFuture;
         R value;

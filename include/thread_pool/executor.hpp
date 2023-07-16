@@ -20,12 +20,14 @@ namespace muse::pool{
         explicit Executor(Task);
         Executor(const Executor& other) = delete;
         Executor(Executor&& other) noexcept;
+        virtual ~Executor() = default;
     protected:
         Task task;
         bool finishState;                       //任务是否已经完成
         bool discardState;                      //是否被丢弃
         bool haveException;                     //是有具有异常
     };
+
 
     Executor::Executor(Task inTask)
     :task(std::move(inTask)),
