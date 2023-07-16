@@ -1,7 +1,7 @@
 # [muse-threads](#)
-一个基于C++ 11、支持任务批量提交、header-only的线程池，提供了基于std::queue和无锁队列 [concurrentqueue](https://github.com/cameron314/concurrentqueue)的两个线程池版本。
+一个基于C++ 11、支持任务批量提交、支持配置的线程池，提供了基于std::queue和无锁队列 [concurrentqueue](https://github.com/cameron314/concurrentqueue)的两个线程池版本。
 * ThreadPool 基于C++ STL 标准容器 queue。
-* ConcurrentThreadPool 基于无锁队列 concurrentqueue。
+* ConcurrentThreadPool 基于无锁队列 [concurrentqueue](https://github.com/cameron314/concurrentqueue)。
 
 **ThreadPool 线程池设计图：**  
 <img src="./docs/assets/jiagou.png" width="800px" />
@@ -11,8 +11,6 @@
 * 实现简单、跨平台、全部基于 C++ 标准。
 * 支持无锁队列 - `在CPU几乎满负荷的情况下推荐使用！`
 * 支持配置
-    
-
 
 #### 单个任务提交：
 ```cpp

@@ -4,7 +4,7 @@
 #include <exception>
 #include <chrono>
 #include "thread_pool/pool.hpp"
-#include "thread_pool/executor_token.hpp"
+#include "thread_pool/executor_token.h"
 
 
 using namespace muse::pool;

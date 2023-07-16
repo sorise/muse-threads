@@ -1,4 +1,4 @@
-#include "executor.hpp"
+#include "executor.h"
 #include <future>
 
 #ifndef MUSE_THREAD_POOL_EXECUTOR_TOKEN_HPP
@@ -14,7 +14,7 @@ namespace muse::pool{
         };
 
         ExecutorToken(const ExecutorToken& other) = delete;
-
+        virtual ~ExecutorToken() = default;
         ExecutorToken(ExecutorToken&& other) noexcept
         :Executor(std::move(other)), resultFuture(std::move(other.resultFuture)){};
 
@@ -47,9 +47,7 @@ namespace muse::pool{
         bool isGetValue {false};
     };
 
-
-    template<>
-    class ExecutorToken<void> :public Executor{
+    template<> class ExecutorToken<void> :public Executor{
     public:
         ExecutorToken(std::function<void()> runner, std::future<void> r)
                 :Executor(std::move(runner)),resultFuture(std::move(r)) {
@@ -115,8 +113,7 @@ namespace muse::pool{
         }
     }
 
-    template<>
-    void get_result_executor(const std::shared_ptr<Executor>& token){
+    template<> void get_result_executor(const std::shared_ptr<Executor>& token){
         if (token != nullptr){
             auto result = reinterpret_cast<ExecutorToken<void>*>(token.get());
             return result->get();
@@ -124,7 +121,6 @@ namespace muse::pool{
             throw std::runtime_error("The parameter passed in is nullptr");
         }
     }
-
 
     template<typename R>
     static bool is_discard_executor(const std::shared_ptr<Executor>& token){
@@ -145,7 +141,6 @@ namespace muse::pool{
             throw std::runtime_error("The parameter passed in is nullptr");
         }
     }
-
 
     template<typename R>
     static bool is_error_executor(const std::shared_ptr<Executor>& token){

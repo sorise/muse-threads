@@ -1,7 +1,7 @@
 #include <thread>
 #include <algorithm>
 #include <iostream>
-#include "conf.hpp"
+#include "conf.h"
 
 #ifndef MUSE_THREAD_POOL_EXECUTOR_H
 #define MUSE_THREAD_POOL_EXECUTOR_H  1
@@ -20,6 +20,7 @@ namespace muse::pool{
         explicit Executor(Task);
         Executor(const Executor& other) = delete;
         Executor(Executor&& other) noexcept;
+        virtual ~Executor() = default;
     protected:
         Task task;
         bool finishState;                       //任务是否已经完成
@@ -27,19 +28,6 @@ namespace muse::pool{
         bool haveException;                     //是有具有异常
     };
 
-    Executor::Executor(Task inTask)
-    :task(std::move(inTask)),
-    finishState(false),
-    discardState(false){
-
-    }
-
-    Executor::Executor(Executor &&other) noexcept
-    :task(std::move(other.task)),
-    finishState(other.finishState),
-    discardState(other.discardState){
-
-    }
 
 }
 

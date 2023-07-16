@@ -7,9 +7,9 @@
 #include <chrono>
 #include <queue>
 
-#include "executor_token.hpp"
+#include "executor_token.h"
 #include "commit_result.hpp"
-#include "conf.hpp"
+#include "conf.h"
 
 using namespace std::chrono_literals;
 
@@ -65,10 +65,8 @@ namespace muse::pool{
                 if (!executorPtr->finishState){
                     //执行任务，防止异常导致 线程池崩溃！
                     try {
-                        printf("run one \n");
                         //正常执行完成状态
                         executorPtr->task();
-                        printf("run one end\n");
                     }catch(...){
                         //如果执行失败
                         executorPtr->haveException = true;
@@ -304,7 +302,6 @@ namespace muse::pool{
                 }
                 condition.notify_all();
             }
-            printf("commit v finish \n");
             return results;
         }
 
