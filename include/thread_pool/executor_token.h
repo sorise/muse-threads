@@ -41,6 +41,9 @@ namespace muse::pool{
             isError();
             return value;
         }
+
+
+
     private:
         std::future<R> resultFuture;
         R value;
