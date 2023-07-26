@@ -111,3 +111,35 @@ int main() {
     return 0;
 }
 ```
+
+#### 成员函数提交
+支持提交成员函数，类似于bind的功能！
+```cpp
+class Normal{
+public:
+    Normal(int _value, const std::string& _name)
+            :value(_value), name( std::move(_name)){}
+
+    std::string setValueAndGetName(int _new_value){
+        this->value = _new_value;
+        return this->name;
+    }
+
+    int getValue(){
+        return this->value;
+    }
+
+private:
+    int value;
+    std::string name;
+};
+
+Normal normal(25,"remix");
+//将任务包装成一个执行器
+auto ext = make_executor(&Normal::setValueAndGetName, normal, 56);
+//提交执行器
+pool.commit_executor(ext);
+
+std::cout << ext->get() << std::endl; //remix
+std::cout << normal.getValue() << std::endl; //56
+```

@@ -6,9 +6,26 @@
 #include "thread_pool/pool.hpp"
 #include "thread_pool/executor_token.h"
 
+class Normal{
+public:
+    Normal(int _value, const std::string& _name)
+            :value(_value), name( std::move(_name)){}
+
+    std::string setValueAndGetName(int _new_value){
+        this->value = _new_value;
+        return this->name;
+    }
+
+    int getValue(){
+        return this->value;
+    }
+
+private:
+    int value;
+    std::string name;
+};
 
 using namespace muse::pool;
-
 int main() {
     //创建一个线程池
     //队列最大长度为 1024
@@ -27,9 +44,6 @@ int main() {
         executors.push_back(executor);
     }
 
-    //将任务包装成一个执行器
-
-    //提交执行器
     std::vector<CommitResult> commitResults = pool.commit_executors(executors);
 
     for (int i = 0; i < commitResults.size(); ++i) {

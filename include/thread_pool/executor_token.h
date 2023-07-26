@@ -42,8 +42,6 @@ namespace muse::pool{
             return value;
         }
 
-
-
     private:
         std::future<R> resultFuture;
         R value;
@@ -86,6 +84,26 @@ namespace muse::pool{
         bool isGetValue {false};
     };
 
+
+    //将任务封装成一个 token！
+    template<typename R, typename F, typename ...Args>
+    auto make_executor(F&& f, R&& r, Args&&...args) -> std::shared_ptr<ExecutorToken<decltype((r.*f)(args...))>>{
+        using ReturnType = decltype((r.*f)(args...));
+        const std::shared_ptr<std::packaged_task<ReturnType()>>  runner =
+                std::make_shared<std::packaged_task<ReturnType()>>(
+                        std::bind(std::forward<F>(f), std::forward<R>(r),std::forward<Args>(args)...)
+                );
+
+        std::function<void()> package = [runner](){
+            (*runner)();
+        };
+        std::shared_ptr<ExecutorToken<ReturnType>> tokenPtr(
+                new ExecutorToken<ReturnType>(package, runner->get_future())
+        );
+        return tokenPtr;
+    }
+
+
     //将任务封装成一个 token！
     template< class F, class ...Args >
     auto make_executor(F&& f, Args&&...args) -> std::shared_ptr<ExecutorToken<decltype(f(args...))>>{
@@ -95,16 +113,18 @@ namespace muse::pool{
                 std::make_shared<std::packaged_task<ReturnType()>>(
                         std::bind(std::forward<F>(f), std::forward<Args>(args)...)
         );
-
         std::function<void()> package = [runner](){
             (*runner)();
         };
-
         std::shared_ptr<ExecutorToken<ReturnType>> tokenPtr(
             new ExecutorToken<ReturnType>(package, runner->get_future())
         );
         return tokenPtr;
     }
+
+
+
+
 
     template<typename R>
     static R get_result_executor(const std::shared_ptr<Executor>& token){
