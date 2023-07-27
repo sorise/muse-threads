@@ -4,7 +4,7 @@
 #include "conf.h"
 
 namespace muse::pool{
-    static std::chrono::milliseconds GetTick(){
+    extern std::chrono::milliseconds GetTick(){
         std::chrono::time_point<std::chrono::system_clock> tp =
                 std::chrono::time_point_cast<std::chrono::milliseconds>(std::chrono::system_clock::now());
         return std::chrono::duration_cast<std::chrono::milliseconds>(tp.time_since_epoch());

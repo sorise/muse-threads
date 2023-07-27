@@ -32,7 +32,7 @@ namespace muse::pool{
         std::shared_ptr<std::thread> workman {nullptr};
     };
 
-    static std::chrono::milliseconds GetTick();
+    std::chrono::milliseconds GetTick();
 
     /* 并发线程池的工作线程状态信息 */
     struct ConcurrentWorker{
