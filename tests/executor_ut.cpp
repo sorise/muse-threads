@@ -30,4 +30,8 @@ TEST_CASE("make_executor - number", "[ExecutorToken]"){
     Normal normal(25,"remix");
 
     REQUIRE_NOTHROW(make_executor(&Normal::setValueAndGetName, normal, 56));
+
+    REQUIRE_NOTHROW(make_executor(&Normal::setValueAndGetName, &normal, 56));
+
+
 }
