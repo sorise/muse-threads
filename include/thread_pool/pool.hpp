@@ -427,7 +427,6 @@ namespace muse::pool{
         }
 
         ~ThreadPool(){
-            printf("go to die \n");
             if (!isStart){
                 //就没有启动过线程池
             }else{

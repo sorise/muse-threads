@@ -113,7 +113,7 @@ int main() {
 ```
 
 #### 成员函数提交
-支持提交成员函数，类似于bind的功能！
+支持提交成员函数，可以传递指针或者引用，类似于bind的功能！
 ```cpp
 class Normal{
 public:
@@ -135,8 +135,11 @@ private:
 };
 
 Normal normal(25,"remix");
-//将任务包装成一个执行器
+//将任务包装成一个执行器，传递引用
 auto ext = make_executor(&Normal::setValueAndGetName, normal, 56);
+/*   传递指针
+ *   auto ext = make_executor(&Normal::setValueAndGetName, &normal, 56);
+ * */
 //提交执行器
 pool.commit_executor(ext);
 

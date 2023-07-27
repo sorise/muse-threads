@@ -105,11 +105,11 @@ namespace muse::pool{
 
     //普通任务封装成一个 token！
     template<typename R, typename F, typename ...Args>
-    auto make_executor(F&& f, R&& r, Args&&...args) -> std::shared_ptr<ExecutorToken<decltype((r.*f)(args...))>>{
+    auto make_executor(F&& f, R& r, Args&&...args) -> std::shared_ptr<ExecutorToken<decltype((r.*f)(args...))>>{
         using ReturnType = decltype((r.*f)(args...));
         const std::shared_ptr<std::packaged_task<ReturnType()>>  runner =
                 std::make_shared<std::packaged_task<ReturnType()>>(
-                        std::bind(std::forward<F>(f), std::forward<R>(r),std::forward<Args>(args)...)
+                        std::bind(std::forward<F>(f), std::ref(r),std::forward<Args>(args)...)
                 );
 
         std::function<void()> package = [runner](){

@@ -34,31 +34,15 @@ int main() {
     //线程池 管理线程运行频率为 1.9s
     ThreadPool<ThreadPoolType::Fixed, 1024, 4> pool(4, ThreadPoolCloseStrategy::WaitAllTaskFinish, 1900ms);
 
-    std::vector<std::shared_ptr<Executor>> executors;
+    Normal normal(50,"remix");
 
-    for (int i = 0; i < 10; ++i) {
-        auto executor = make_executor([](int i)->int{
-            printf("logger run %d !\n", i);
-            return i * i;
-        }, i);
-        executors.push_back(executor);
-    }
+    auto ex = make_executor(&Normal::setValueAndGetName, normal, 100);
 
-    std::vector<CommitResult> commitResults = pool.commit_executors(executors);
+    pool.commit_executor(ex);
 
-    for (int i = 0; i < commitResults.size(); ++i) {
-        //如果提交成功
-        if (commitResults[i].isSuccess){
-            //执行过程中没有异常
-            if (!is_error_executor<int>(executors[i])){
-                //获得结果
-                int value = get_result_executor<int>(executors[i]);
-                printf("executor[%d] - result: %d\n", i, value);
-            }
-        }else{
-            printf("task[%d] submit failed\n", i);
-        }
-    }
+    ex->get();
+
+    std::cout << normal.getValue() << std::endl;
 
     //关闭线程池
     pool.close();

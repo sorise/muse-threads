@@ -4,6 +4,24 @@
 #include "thread_pool/concurrent_pool.hpp"
 
 using namespace muse::pool;
+class Normal{
+public:
+    Normal(int _value, const std::string& _name)
+            :value(_value), name( std::move(_name)){}
+
+    std::string setValueAndGetName(int _new_value){
+        this->value = _new_value;
+        return this->name;
+    }
+
+    int getValue(){
+        return this->value;
+    }
+
+private:
+    int value;
+    std::string name;
+};
 
 ThreadPool<ThreadPoolType::Flexible, 1024, 8> pool(4, ThreadPoolCloseStrategy::WaitAllTaskFinish);
 
@@ -18,6 +36,17 @@ TEST_CASE("normal - commit", "[ThreadPool]"){
     }
 }
 
+TEST_CASE("normal - reference", "[ThreadPool]") {
+    Normal normal(50, "remix");
+
+    auto ex = make_executor(&Normal::setValueAndGetName, normal, 100);
+
+    pool.commit_executor(ex);
+
+    ex->get();
+
+    std::cout << normal.getValue() << std::endl;
+}
 
 TEST_CASE("normal - run", "[ConcurrentThreadPool]"){
     muse::pool::ConcurrentThreadPool<1024> pool(4, ThreadPoolCloseStrategy::WaitAllTaskFinish, 1500ms);
