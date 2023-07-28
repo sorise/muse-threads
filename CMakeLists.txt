@@ -11,7 +11,12 @@ include_directories(include)
 include_directories(dependency/concurrent_queue)
 include_directories(dependency/catch2)
 
-add_library(threads include/thread_pool/conf.cpp include/thread_pool/executor.cpp)
+add_library(threads
+        include/thread_pool/conf.cpp
+        include/thread_pool/executor.cpp
+        include/thread_pool/pool.cpp
+        include/thread_pool/concurrent_pool.cpp
+)
 
 set(CMAKE_CXX_STANDARD 17)
 

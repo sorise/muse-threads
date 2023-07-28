@@ -23,7 +23,7 @@ private:
     std::string name;
 };
 
-ThreadPool<ThreadPoolType::Flexible, 1024, 8> pool(4, ThreadPoolCloseStrategy::WaitAllTaskFinish);
+ThreadPool pool(4,8,1024, ThreadPoolType::Flexible, ThreadPoolCloseStrategy::WaitAllTaskFinish, 2500ms);
 
 TEST_CASE("normal - commit", "[ThreadPool]"){
     auto ex = make_executor([](int i)->int{
@@ -49,7 +49,7 @@ TEST_CASE("normal - reference", "[ThreadPool]") {
 }
 
 TEST_CASE("normal - run", "[ConcurrentThreadPool]"){
-    muse::pool::ConcurrentThreadPool<1024> pool(4, ThreadPoolCloseStrategy::WaitAllTaskFinish, 1500ms);
+    muse::pool::ConcurrentThreadPool cpool(4, 1024,ThreadPoolCloseStrategy::WaitAllTaskFinish, 1500ms);
 
     int isSuccess = true;
     try {
@@ -58,7 +58,7 @@ TEST_CASE("normal - run", "[ConcurrentThreadPool]"){
                 std::this_thread::sleep_for( std::chrono::milliseconds(5));
                 printf("logger: %d is running!\n", i);
             }, i);
-            auto result = pool.commit_executor(token1);
+            auto result = cpool.commit_executor(token1);
             if (!result.isSuccess){
                 std::this_thread::sleep_for( std::chrono::milliseconds(5));
             }else{
@@ -73,16 +73,16 @@ TEST_CASE("normal - run", "[ConcurrentThreadPool]"){
             printf("logger: %d is running!\n", i);
         }, 4000);
 
-        pool.commit_executor(token1);
+        cpool.commit_executor(token1);
 
         std::this_thread::sleep_for(1600ms);
 
-        for (int i = 4001; i < 4101; ) {
-            auto token1 = make_executor([&](int i)->void{
+        for (int i = 4001; i < 4501; ) {
+            auto newToken = make_executor([&](int i)->void{
                 std::this_thread::sleep_for( std::chrono::milliseconds(5));
                 printf("logger: %d is running!\n", i);
             }, i);
-            auto result = pool.commit_executor(token1);
+            auto result = cpool.commit_executor(newToken);
             if (!result.isSuccess){
                 std::this_thread::sleep_for( std::chrono::milliseconds(5));
             }else{
@@ -92,5 +92,7 @@ TEST_CASE("normal - run", "[ConcurrentThreadPool]"){
     }catch(...){
         isSuccess = false;
     }
+
+    cpool.close();
     REQUIRE(isSuccess);
 }

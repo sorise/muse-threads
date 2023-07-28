@@ -25,8 +25,7 @@ int main() {
     //线程数量可以动态变化，最多线程数量为 8，最少为 4
     //线程关闭策略为 等待所有任务执行完毕后才关闭
     //线程池 管理线程运行频率为 1.9s
-    ThreadPool<ThreadPoolType::Flexible, 1024, 8> 
-            pool(4, ThreadPoolCloseStrategy::WaitAllTaskFinish, 1900ms);
+    ThreadPool pool(4 , 8 , 1024 , ThreadPoolType::Flexible , ThreadPoolCloseStrategy::WaitAllTaskFinish , 2500ms);
     
     //将任务包装成一个执行器
     auto executor = make_executor([](int i)->int{
@@ -52,6 +51,15 @@ int main() {
     return 0;
 }
 ```
+**线程关闭策略**
+```c++
+/* 线程池关闭策略 */
+enum class ThreadPoolCloseStrategy{
+    DiscardAllTasks,        //丢弃所有的任务
+    WaitAllTaskFinish,      //等待任务完成
+    ReturnTaskAndClose,     //返回任务，然后关闭
+};
+```
 
 #### 批量任务提交：
 批量任务的结果或许需要使用一些静态辅助方法(R 为返回值类型，需要指定)！
@@ -69,13 +77,10 @@ int main() {
 using namespace muse::pool;
 
 int main() {
-    //创建一个线程池
+    //创建一个线程数量固定的线程池
     //队列最大长度为 1024
-    //线程数量可以动态变化，最多线程数量为 8，最少为 4
     //线程关闭策略为 等待所有任务执行完毕后才关闭
-    //线程池 管理线程运行频率为 1.9s
-    ThreadPool<ThreadPoolType::Flexible, 1024, 8> 
-            pool(4, ThreadPoolCloseStrategy::WaitAllTaskFinish, 1900ms);
+    ThreadPool pool(4 , 4 , 1024 , ThreadPoolType::Fixed , ThreadPoolCloseStrategy::WaitAllTaskFinish);
     
     //创建一个批量任务容器
     std::vector<std::shared_ptr<Executor>> executors;
@@ -145,4 +150,26 @@ pool.commit_executor(ext);
 
 std::cout << ext->get() << std::endl; //remix
 std::cout << normal.getValue() << std::endl; //56
+```
+
+#### [无所队列线程池](#)
+请在服务器几乎满负荷的情况下使用, 除了创建方式之外和普通队列使用几乎一样。 如果线程没有任务执行则处于空闲状态，空闲时间超过设置大小则杀死线程，
+等待有新任务的时候再创建线程。
+```cpp
+/* 创建一个线程池 */
+muse::pool::ConcurrentThreadPool cpool(
+        4, //最大线程数
+        2048,   //队列长度
+        ThreadPoolCloseStrategy::WaitAllTaskFinish,//关闭策略 
+        1500ms //运行线程空闲时间
+);
+
+auto token = make_executor([](int i)->void{
+    std::this_thread::sleep_for( std::chrono::milliseconds(5));
+    printf("logger: %d is running!\n", i);
+}, 4000);
+
+cpool.commit_executor(token);
+//关闭
+cpool.close();
 ```

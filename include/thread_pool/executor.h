@@ -11,10 +11,7 @@ namespace muse::pool{
 
     /* 执行任务 */
     class Executor{
-        template<ThreadPoolType Type, size_t QueueMaxSize, size_t MaxThreadCount>
         friend class ThreadPool;
-        
-        template<size_t QueueMaxSize>
         friend class ConcurrentThreadPool;
     public:
         explicit Executor(Task);

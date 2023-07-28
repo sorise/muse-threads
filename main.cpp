@@ -27,12 +27,16 @@ private:
 
 using namespace muse::pool;
 int main() {
+
     //创建一个线程池
-    //队列最大长度为 1024
-    //线程数量可以动态变化，最多线程数量为 8，最少为 4
-    //线程关闭策略为 等待所有任务执行完毕后才关闭
-    //线程池 管理线程运行频率为 1.9s
-    ThreadPool<ThreadPoolType::Fixed, 1024, 4> pool(4, ThreadPoolCloseStrategy::WaitAllTaskFinish, 1900ms);
+    ThreadPool pool(
+            4, //线程数量可以动态变化，最多线程数量为 8，最少为 4
+            8,
+            1024,  //队列最大长度为 1024
+            ThreadPoolType::Flexible, //动态线程池
+            ThreadPoolCloseStrategy::WaitAllTaskFinish, //线程关闭策略为 等待所有任务执行完毕后才关闭
+            2500ms //线程池 管理线程运行频率为 2.5s
+    );
 
     Normal normal(50,"remix");
 
