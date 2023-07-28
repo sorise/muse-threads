@@ -25,7 +25,11 @@ int main() {
     //线程数量可以动态变化，最多线程数量为 8，最少为 4
     //线程关闭策略为 等待所有任务执行完毕后才关闭
     //线程池 管理线程运行频率为 1.9s
-    ThreadPool pool(4 , 8 , 1024 , ThreadPoolType::Flexible , ThreadPoolCloseStrategy::WaitAllTaskFinish , 2500ms);
+    ThreadPool pool( 4 , 8 , 1024 , 
+         ThreadPoolType::Flexible , 
+         ThreadPoolCloseStrategy::WaitAllTaskFinish , 
+         2500ms
+    );
     
     //将任务包装成一个执行器
     auto executor = make_executor([](int i)->int{
@@ -80,7 +84,10 @@ int main() {
     //创建一个线程数量固定的线程池
     //队列最大长度为 1024
     //线程关闭策略为 等待所有任务执行完毕后才关闭
-    ThreadPool pool(4 , 4 , 1024 , ThreadPoolType::Fixed , ThreadPoolCloseStrategy::WaitAllTaskFinish);
+    ThreadPool pool( 4 , 4 , 1024 , 
+         ThreadPoolType::Fixed , 
+         ThreadPoolCloseStrategy::WaitAllTaskFinish
+    );
     
     //创建一个批量任务容器
     std::vector<std::shared_ptr<Executor>> executors;
