@@ -107,7 +107,7 @@ namespace muse::pool{
     bool ThreadPool::addDynamicThread() noexcept{
         {
             try{
-                int i = cores;
+                unsigned int i = cores;
                 for (; i < MaxThreadCount; ++i) {
                     std::shared_ptr<Worker> worker = workers[i];
                     if(!worker->isRunning.load(std::memory_order_relaxed)){
@@ -136,7 +136,7 @@ namespace muse::pool{
 
     bool ThreadPool::killDynamicThread() noexcept{
         try {
-            int i = cores;
+            unsigned int i = cores;
             for (; i < MaxThreadCount; ++i) {
                 std::shared_ptr<Worker> worker = workers[i];
                 if(worker->isRunning.load(std::memory_order_relaxed)){
