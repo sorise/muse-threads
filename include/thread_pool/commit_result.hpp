@@ -10,7 +10,7 @@ namespace muse::pool{
         CannotExecuteAgain,             //请勿重复执行
         ThreadPoolHasStoppedRunning,    //线程池已经停止运行
         TaskQueueFulled,                //任务队列已经满了
-        MemoryNotEnough,                //任务队列已经满了
+        MemoryNotEnough,                //内存不足
     };
 
     struct CommitResult{

@@ -13,6 +13,22 @@
 * 支持配置
 
 #### 单个任务提交：
+单个任务提交十分简单，提高以后会返回一个 CommitResult 对象表示提交是否成功。
+```cpp
+struct CommitResult{
+    bool isSuccess;       //是否添加成功
+    RefuseReason reason;  //失败原因
+};
+
+enum class RefuseReason{
+    NoRefuse,                       //没有拒绝
+    CannotExecuteAgain,             //请勿重复执行
+    ThreadPoolHasStoppedRunning,    //线程池已经停止运行
+    TaskQueueFulled,                //任务队列已经满了
+    MemoryNotEnough,                //内存不足
+};
+```
+
 ```cpp
 #include "thread_pool/pool.hpp"
 #include "thread_pool/executor_token.hpp"
